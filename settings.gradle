@@ -1,0 +1,4 @@
+rootProject.name = 'reactive-demo'
+include 'reactive-client'
+include 'reactive-server'
+
