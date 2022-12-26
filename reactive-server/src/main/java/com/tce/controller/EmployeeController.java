@@ -9,6 +9,7 @@ import io.micrometer.tracing.Tracer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import reactor.core.observability.micrometer.Micrometer;
 import reactor.core.publisher.Flux;
 
 import java.util.Objects;
@@ -31,21 +32,37 @@ public class EmployeeController {
 
     @GetMapping("/employees")
     public Flux<Employee> getEmployees() {
-        //https://stackoverflow.com/questions/74601706/spring-boot-3-webflux-application-with-micrometer-tracing-not-showing-traceid-an
-        //Use handle or tap
-        //.tap(() -> Micrometer.observation(registry));
-        //FIXME Giving same traceId for new requests also, how to close this
-        //FIXME  just call tap() or handle() and then you'll get the MDC correlated for you.
+//        return Flux.deferContextual(contextView -> {
+//            ContextSnapshot.setThreadLocalsFrom(contextView, ObservationThreadLocalAccessor.KEY);
+//            String traceId = Objects.requireNonNull(tracer.currentSpan()).context().traceId();
+//            log.info("In controller traceId {}", traceId);
+//            return employeeService
+//                    .getEmployees()
+//                    .doOnComplete(() -> log.info("Client"))
+//                    .tap(Micrometer.observation(registry));
+//        });
+
+//        return Flux.deferContextual(contextView -> {
+//            ContextSnapshot.setThreadLocalsFrom(contextView, ObservationThreadLocalAccessor.KEY);
+//            String traceId = Objects.requireNonNull(tracer.currentSpan()).context().traceId();
+//            log.info("In controller traceId {}", traceId);
+//            return employeeService.getEmployees()
+//                    .handle((t, u) -> {
+//                    log.info("Inside handle {}", t);
+//                    u.next(t);
+//                });
+//        });
+
+        //https://github.com/micrometer-metrics/micrometer-samples/blob/bb777d40daacd0dc108e20731ce4dc4f72d47a2f/webflux/src/main/java/com/example/micrometer/WebFluxApplication.java
         return Flux.deferContextual(contextView -> {
-            ContextSnapshot.setThreadLocalsFrom(contextView, ObservationThreadLocalAccessor.KEY);
-            String traceId = Objects.requireNonNull(tracer.currentSpan()).context().traceId();
-            log.info("In controller traceId {}", traceId);
-            return employeeService.getEmployees()
-                    .handle((t, u) -> {
-                    log.info("Inside handle {}", t);
-                    u.next(t);
-                });
+            try (ContextSnapshot.Scope scope = ContextSnapshot.setThreadLocalsFrom(contextView,
+                    ObservationThreadLocalAccessor.KEY)) {
+                String traceId = this.tracer.currentSpan().context().traceId();
+                log.info("<ACCEPTANCE_TEST> <TRACE:{}> Hello from producer", traceId);
+                return employeeService.getEmployees();
+            }
         });
+
     }
 
 }
