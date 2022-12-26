@@ -32,15 +32,15 @@ public class EmployeeController {
 
     @GetMapping("/employees")
     public Flux<Employee> getEmployees() {
-//        return Flux.deferContextual(contextView -> {
-//            ContextSnapshot.setThreadLocalsFrom(contextView, ObservationThreadLocalAccessor.KEY);
-//            String traceId = Objects.requireNonNull(tracer.currentSpan()).context().traceId();
-//            log.info("In controller traceId {}", traceId);
-//            return employeeService
-//                    .getEmployees()
-//                    .doOnComplete(() -> log.info("Client"))
-//                    .tap(Micrometer.observation(registry));
-//        });
+        return Flux.deferContextual(contextView -> {
+            ContextSnapshot.setThreadLocalsFrom(contextView, ObservationThreadLocalAccessor.KEY);
+            String traceId = Objects.requireNonNull(tracer.currentSpan()).context().traceId();
+            log.info("In controller traceId {}", traceId);
+            return employeeService
+                    .getEmployees()
+                    .doOnComplete(() -> log.info("Client"))
+                    .tap(Micrometer.observation(registry));
+        });
 
 //        return Flux.deferContextual(contextView -> {
 //            ContextSnapshot.setThreadLocalsFrom(contextView, ObservationThreadLocalAccessor.KEY);
@@ -54,14 +54,14 @@ public class EmployeeController {
 //        });
 
         //https://github.com/micrometer-metrics/micrometer-samples/blob/bb777d40daacd0dc108e20731ce4dc4f72d47a2f/webflux/src/main/java/com/example/micrometer/WebFluxApplication.java
-        return Flux.deferContextual(contextView -> {
-            try (ContextSnapshot.Scope scope = ContextSnapshot.setThreadLocalsFrom(contextView,
-                    ObservationThreadLocalAccessor.KEY)) {
-                String traceId = this.tracer.currentSpan().context().traceId();
-                log.info("<ACCEPTANCE_TEST> <TRACE:{}> Hello from producer", traceId);
-                return employeeService.getEmployees();
-            }
-        });
+//        return Flux.deferContextual(contextView -> {
+//            try (ContextSnapshot.Scope scope = ContextSnapshot.setThreadLocalsFrom(contextView,
+//                    ObservationThreadLocalAccessor.KEY)) {
+//                String traceId = this.tracer.currentSpan().context().traceId();
+//                log.info("<ACCEPTANCE_TEST> <TRACE:{}> Hello from producer", traceId);
+//                return employeeService.getEmployees();
+//            }
+//        });
 
     }
 
