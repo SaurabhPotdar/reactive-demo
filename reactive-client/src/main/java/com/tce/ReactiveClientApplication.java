@@ -1,9 +1,7 @@
 package com.tce;
 
-import io.micrometer.observation.ObservationTextPublisher;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class ReactiveClientApplication {
@@ -12,9 +10,9 @@ public class ReactiveClientApplication {
 		SpringApplication.run(ReactiveClientApplication.class, args);
 	}
 
-	@Bean
-	ObservationTextPublisher otp() {
-		return new ObservationTextPublisher();
-	}
+//	@Bean
+//	ObservationTextPublisher otp() {
+//		return new ObservationTextPublisher();
+//	}
 
 }

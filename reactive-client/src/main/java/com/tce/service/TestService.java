@@ -29,13 +29,12 @@ public class TestService {
         log.info("Get employees");
         return webClient.get()
                 .uri(serverUrl + "/employees")
-                .header("X-B3-TraceId", tracer.currentSpan().context().traceId())
-                .header("X-B3-SpanId", tracer.currentSpan().context().spanId())
-                .header("traceId", tracer.currentSpan().context().traceId())
-                .header("spanId", tracer.currentSpan().context().spanId())
+//                .header("X-B3-TraceId", tracer.currentSpan().context().traceId())
+//                .header("X-B3-SpanId", tracer.currentSpan().context().spanId())
+//                .header("traceId", tracer.currentSpan().context().traceId())
+//                .header("spanId", tracer.currentSpan().context().spanId())
                 .retrieve()
                 .bodyToFlux(Employee.class)
-                .doOnComplete(() -> log.info(tracer.currentTraceContext().context().traceId() + " " + tracer.currentSpan().context().traceId()))
                 .doOnComplete(() -> log.info("Received response from server"));
     }
 
