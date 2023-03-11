@@ -31,6 +31,7 @@ public class TestService {
                 .header("X-B3-SpanId", MDC.get("spanId"))
                 .retrieve()
                 .bodyToFlux(Employee.class)
+                //This log does not have a traceId and spanId
                 .doOnComplete(() -> log.info("Received response from server"));
     }
 

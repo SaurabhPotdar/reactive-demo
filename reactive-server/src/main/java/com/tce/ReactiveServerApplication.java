@@ -9,7 +9,7 @@ public class ReactiveServerApplication {
 
 	public static void main(String[] args) {
 		Hooks.enableAutomaticContextPropagation();
-		Hooks.enableContextLossTracking();
+//		Hooks.enableContextLossTracking();
 		SpringApplication.run(ReactiveServerApplication.class, args);
 	}
 
