@@ -8,8 +8,8 @@ import reactor.core.publisher.Hooks;
 public class GatewayApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(GatewayApplication.class, args);
 		Hooks.enableAutomaticContextPropagation();
+		SpringApplication.run(GatewayApplication.class, args);
 	}
 
 }

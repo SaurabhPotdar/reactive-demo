@@ -32,6 +32,9 @@ public class RequestResponseLogFilter implements GlobalFilter, Ordered {
         return Integer.MIN_VALUE + 1;
     }
 
+    /**
+     * Add request traceId to response header, this can be used to query logs from different services in AWS Cloudwatch.
+     */
     private void addTraceIdResponseHeader(final ServerWebExchange exchange) {
         final String traceId = tracer.currentSpan().context().traceIdString();
         log.info("Adding traceId to response header: {}", traceId);
