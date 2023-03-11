@@ -10,9 +10,4 @@ public class ReactiveClientApplication {
 		SpringApplication.run(ReactiveClientApplication.class, args);
 	}
 
-//	@Bean
-//	ObservationTextPublisher otp() {
-//		return new ObservationTextPublisher();
-//	}
-
 }
