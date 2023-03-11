@@ -8,6 +8,7 @@
 
 ### Reactive web client
 1. [Library](https://betterprogramming.pub/feign-reactive-my-preferred-solution-for-rest-api-consumption-5d79a283b24f)
+    1. [Spring boot 3 issue](https://github.com/PlaytikaOSS/feign-reactive/issues/534)
 2. Http Exchange
 
 ### [Postgres reactive](https://hantsy.github.io/spring-reactive-sample/data/data-r2dbc.html)
