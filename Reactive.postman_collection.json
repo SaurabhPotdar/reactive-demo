@@ -1,0 +1,75 @@
+{
+	"info": {
+		"_postman_id": "1a3982da-9b9b-4d89-a709-9c7fb87c3480",
+		"name": "Reactive",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24526505"
+	},
+	"item": [
+		{
+			"name": "Get employees",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-B3-TraceId",
+						"value": "1234",
+						"type": "text"
+					},
+					{
+						"key": "X-B3-SpanId",
+						"value": "5678",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{client}}/employees",
+					"host": [
+						"{{client}}"
+					],
+					"path": [
+						"employees"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "gateway",
+			"value": "http://localhost:8080",
+			"type": "string"
+		},
+		{
+			"key": "server",
+			"value": "http://localhost:8081",
+			"type": "string"
+		},
+		{
+			"key": "client",
+			"value": "http://localhost:8082",
+			"type": "string"
+		}
+	]
+}
