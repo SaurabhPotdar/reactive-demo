@@ -14,21 +14,21 @@ import reactor.core.publisher.Flux;
 @Configuration
 public class TestService {
 
-    private final String serverUrl;
+    private final String gatewayUrl;
 
     private final WebClient webClient = WebClient.builder().build();
 
-    public TestService(@Value("${server.url}") String serverUrl) {
-        this.serverUrl = serverUrl;
+    public TestService(@Value("${gateway.url}") String gatewayUrl) {
+        this.gatewayUrl = gatewayUrl;
     }
 
     public Flux<Employee> get() {
         log.info("Get employees");
         return webClient.get()
-                .uri(serverUrl + "/employees")
+                .uri(gatewayUrl + "/server/employees")
+                //Injecting current traceId and spanId into request header
                 .header("X-B3-TraceId", MDC.get("traceId"))
                 .header("X-B3-SpanId", MDC.get("spanId"))
-//                .header("X-B3-RequestId", MDC.get("traceId"))
                 .retrieve()
                 .bodyToFlux(Employee.class)
                 .doOnComplete(() -> log.info("Received response from server"));
