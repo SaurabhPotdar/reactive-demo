@@ -11,6 +11,7 @@ import org.springframework.data.relational.core.mapping.Table;
 @ToString
 @Table("employees")
 public class Employee {
+
     @Id
     private Long id;
 
