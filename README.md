@@ -4,7 +4,7 @@
 ### Tracing with Spring Reactive
 
 [Issue](https://github.com/spring-projects/spring-boot/issues/33372)
-[Solution](https://stackoverflow.com/questions/74601706/spring-boot-3-webflux-application-with-micrometer-tracing-not-showing-traceid-an)
+[Solution](https://stackoverflow.com/questions/75221864/how-to-get-trace-id-in-spring-cloud-gateway-using-micrometer-brave)
 
 ### Reactive web client
 1. [Library](https://betterprogramming.pub/feign-reactive-my-preferred-solution-for-rest-api-consumption-5d79a283b24f)
