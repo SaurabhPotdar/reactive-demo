@@ -10,6 +10,24 @@
 			"name": "Get employees",
 			"request": {
 				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{gateway}}/client/employees",
+					"host": [
+						"{{gateway}}"
+					],
+					"path": [
+						"client",
+						"employees"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get employees - Client",
+			"request": {
+				"method": "GET",
 				"header": [
 					{
 						"key": "X-B3-TraceId",
@@ -58,7 +76,7 @@
 	"variable": [
 		{
 			"key": "gateway",
-			"value": "http://localhost:8080",
+			"value": "http://localhost:9080",
 			"type": "string"
 		},
 		{

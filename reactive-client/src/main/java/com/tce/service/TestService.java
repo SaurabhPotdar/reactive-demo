@@ -28,6 +28,7 @@ public class TestService {
                 .uri(serverUrl + "/employees")
                 .header("X-B3-TraceId", MDC.get("traceId"))
                 .header("X-B3-SpanId", MDC.get("spanId"))
+//                .header("X-B3-RequestId", MDC.get("traceId"))
                 .retrieve()
                 .bodyToFlux(Employee.class)
                 .doOnComplete(() -> log.info("Received response from server"));
