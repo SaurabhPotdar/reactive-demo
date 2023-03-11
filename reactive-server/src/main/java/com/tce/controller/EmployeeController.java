@@ -17,6 +17,7 @@ public class EmployeeController {
 
     @GetMapping("/employees")
     public Flux<Employee> getEmployees() {
+        log.info("In Controller");
         return employeeService
                 .getEmployees();
     }

@@ -17,6 +17,7 @@ public class TestController {
 
     @GetMapping("/employees")
     public Flux<Employee> get() {
+        log.info("In Controller");
         return testService.get();
     }
 

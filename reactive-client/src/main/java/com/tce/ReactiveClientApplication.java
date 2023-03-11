@@ -8,8 +8,9 @@ import reactor.core.publisher.Hooks;
 public class ReactiveClientApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(ReactiveClientApplication.class, args);
 		Hooks.enableAutomaticContextPropagation();
+		Hooks.enableContextLossTracking();
+		SpringApplication.run(ReactiveClientApplication.class, args);
 	}
 
 }
