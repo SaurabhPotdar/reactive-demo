@@ -9,16 +9,21 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.server.ServerWebExchange;
 
+import java.net.URI;
+import java.util.LinkedHashSet;
+
 @RestController
 @Slf4j
 @RequiredArgsConstructor
 public class FallbackController {
 
     @GetMapping("/fallback")
-    public ResponseEntity<String> fallback(final ServerWebExchange exchange) {
-        final String exception = ServerWebExchangeUtils.CIRCUITBREAKER_EXECUTION_EXCEPTION_ATTR;
-        log.debug("Exception {}", exception);
-        return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE).body("Service unavailable");
+    public ResponseEntity<ErrorResponse> fallback(final ServerWebExchange exchange) {
+        final LinkedHashSet<URI> set = exchange.getAttribute(ServerWebExchangeUtils.GATEWAY_ORIGINAL_REQUEST_URL_ATTR);
+        final String originalUrl = set == null ? "Service unavailable" : set.toString();
+        log.error("Service unavailable >>>> {}", originalUrl);
+        return ResponseEntity.status(HttpStatus.SERVICE_UNAVAILABLE)
+                .body(new ErrorResponse(HttpStatus.SERVICE_UNAVAILABLE.value(), originalUrl));
     }
 
 }
