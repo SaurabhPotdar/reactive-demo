@@ -12,5 +12,7 @@ dependencies {
 
     implementation tracingDependencies.values()
 
+    implementation fileTree(dir: "${project.rootDir}/commons/build/libs", include: ['commons-*.jar'])
+
     testImplementation 'io.projectreactor:reactor-test'
 }

@@ -13,6 +13,8 @@ dependencies {
     runtimeOnly 'com.h2database:h2'
     runtimeOnly 'io.r2dbc:r2dbc-h2'
 
+    implementation fileTree(dir: "${project.rootDir}/commons/build/libs", include: ['commons-*.jar'])
+
     implementation tracingDependencies.values()
 
     testImplementation 'io.projectreactor:reactor-test'

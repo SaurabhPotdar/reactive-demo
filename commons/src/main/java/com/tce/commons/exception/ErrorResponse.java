@@ -1,4 +1,4 @@
-package com.tce.exception;
+package com.tce.commons.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
