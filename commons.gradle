@@ -9,9 +9,9 @@ allprojects {
     version = '0.0.1-SNAPSHOT'
     sourceCompatibility = '17'
     ext {
-        springBootVersion = '3.0.5'
+        springBootVersion = '3.1.0'
         springDependencyVersion = '1.1.0'
-        springCloudVersion = '2022.0.2'
+        springCloudVersion = '2022.0.3'
         tracingDependencies = [
                 TO01: 'io.projectreactor:reactor-core:3.5.3',
                 TO02: 'io.micrometer:micrometer-tracing-bridge-brave',
