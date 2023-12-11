@@ -9,12 +9,12 @@ allprojects {
     version = '0.0.1-SNAPSHOT'
     sourceCompatibility = '17'
     ext {
-        springBootVersion = '3.1.0'
-        springDependencyVersion = '1.1.0'
-        springCloudVersion = '2022.0.3'
+        springBootVersion = '3.2.0'
+        springDependencyVersion = '1.1.4'
+        springCloudVersion = '2023.0.0'
         tracingDependencies = [
+                //https://github.com/spring-projects/spring-boot/issues/33372#issuecomment-1443766925
                 TO01: 'io.projectreactor:reactor-core:3.5.3',
-                TO02: 'io.micrometer:micrometer-tracing-bridge-brave',
                 TO03: 'io.micrometer:micrometer-observation',
                 T004: 'io.micrometer:micrometer-tracing:1.0.2',
                 T005: 'io.micrometer:context-propagation:1.0.2',
@@ -28,12 +28,15 @@ allprojects {
         }
     }
 
+    //These are the common dependencies for all the projects.
     dependencies {
         implementation 'org.springframework.boot:spring-boot-starter-actuator'
         implementation 'io.micrometer:micrometer-tracing-bridge-brave'
+        implementation fileTree(dir: './commons/build/libs', include: ['commons-*.jar'])
         compileOnly 'org.projectlombok:lombok'
         annotationProcessor 'org.projectlombok:lombok'
         testImplementation 'org.springframework.boot:spring-boot-starter-test'
+        testImplementation 'io.projectreactor:reactor-test'
     }
 
     tasks.named('test') {
