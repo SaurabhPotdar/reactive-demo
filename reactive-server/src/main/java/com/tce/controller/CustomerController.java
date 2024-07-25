@@ -1,7 +1,7 @@
 package com.tce.controller;
 
-import com.tce.model.Employee;
-import com.tce.service.EmployeeService;
+import com.tce.model.Customer;
+import com.tce.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,15 +11,14 @@ import reactor.core.publisher.Flux;
 @RestController
 @Slf4j
 @RequiredArgsConstructor
-public class EmployeeController {
+public class CustomerController {
 
-    private final EmployeeService employeeService;
+    private final CustomerService customerService;
 
-    @GetMapping("/employees")
-    public Flux<Employee> getEmployees() {
+    @GetMapping("/customers")
+    public Flux<Customer> getCustomers() {
         log.info("In Controller");
-        return employeeService
-                .getEmployees();
+        return customerService.getCustomers();
     }
 
 }

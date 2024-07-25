@@ -9,12 +9,14 @@ import org.springframework.data.relational.core.mapping.Table;
 @Getter
 @Setter
 @ToString
-@Table("employees")
-public class Employee {
+@Table("customers")
+public class Customer {
 
     @Id
     private Long id;
 
-    private String name;
+    private String firstName;
+
+    private String lastName;
 
 }

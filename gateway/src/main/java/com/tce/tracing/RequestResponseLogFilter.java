@@ -20,7 +20,7 @@ public class RequestResponseLogFilter implements GlobalFilter, Ordered {
 
     @Override
     public Mono<Void> filter(final ServerWebExchange exchange, final GatewayFilterChain chain) {
-        addTraceIdResponseHeader(exchange);
+        //addTraceIdResponseHeader(exchange);
         final ServerHttpRequest request = exchange.getRequest()
                 .mutate()
                 .build();

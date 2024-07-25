@@ -1,11 +1,11 @@
 package com.tce.repository;
 
-import com.tce.model.Employee;
+import com.tce.model.Customer;
 import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface EmployeeRepository extends ReactiveCrudRepository<Employee, Long> {
+public interface CustomerRepository extends ReactiveCrudRepository<Customer, Long> {
 
 
 }
